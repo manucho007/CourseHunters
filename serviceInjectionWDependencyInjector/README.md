@@ -1,10 +1,11 @@
-# ServiceInjectionWDependencyInjector
-
-Implemented:
--Alias in the service
--Scopes in services
--Simplify a service using a Javascript Object as a value provider
--Instantiate a service using an Angular Factory provider
+# Service Injection With Dependency Injector Angular 6
+<h1>Implemented</h1>
+<ul>
+  <li>Alias in the service</li>
+  <li>Scopes in services</li>
+  <li>Simplify a service using a Javascript Object as a value provider</li>
+  <li>Instantiate a service using an Angular Factory provider</li>
+</ul>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
 
