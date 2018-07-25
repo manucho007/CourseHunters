@@ -1,0 +1,32 @@
+<h1>Angular Services</h1>
+
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <h5 class="mb-1">Use of Alias in the Service</h5>
+      <app-person></app-person>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <contact-list></contact-list>
+  </li>
+</ul>
+
+
+  <div class="card border-success mb-3" style="max-width: 20rem;">
+    <div class="card-header">Same Service different scope</div>
+    <div class="card-body">
+      <h3>App Component</h3>
+      <person-edit></person-edit>
+      <button (click)="childVisible = !childVisible"> Toggle</button>
+      <app-child *ngIf="childVisible"></app-child>
+    </div>
+  </div>
+
+  <div class="card border-success mb-3" style="max-width: 20rem;">
+    <div class="card-header">Passing data directly from service</div>
+    <div class="card-body">
+      <pre>{{people | json}}</pre>
+    </div>
+  </div>
+
+
+<router-outlet></router-outlet>
