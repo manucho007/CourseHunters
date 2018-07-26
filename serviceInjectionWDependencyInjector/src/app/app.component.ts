@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { PeopleService } from './people/people.service';
+import {LoggerService, loggerFactory} from './services/logger.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers:[
+    {
+      provide:LoggerService,
+      useFactory:loggerFactory('AppComponent')
+    }
+  ]
 })
 export class AppComponent {
   people;
