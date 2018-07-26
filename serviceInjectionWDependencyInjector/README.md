@@ -6,6 +6,7 @@
   <li>Simplify a service using a Javascript Object as a value provider</li>
   <li>Instantiate a service using an Angular Factory provider</li>
   <li>Override Service with another service</li>
+  <li>Control dependency lookup with @Host, @SkipSelf and @Optional </li>
 </ul>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.

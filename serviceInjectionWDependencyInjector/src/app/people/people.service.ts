@@ -3,18 +3,24 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PeopleService{
   constructor(){}
-
+people=[
+  {
+    name:'Manuel'
+  },
+  {
+    name:'Andres'
+  },
+  {
+    name:'Leonardo'
+  }
+]
   getPeople(){
-    return[
-      {
-        name:'Manuel'
-      },
-      {
-        name:'Andres'
-      },
-      {
-        name:'Leonardo'
-      }
-    ];
+    return this.people;
+  }
+
+  addPerson(name){
+    this.people.push({
+      name
+    });
   }
 }

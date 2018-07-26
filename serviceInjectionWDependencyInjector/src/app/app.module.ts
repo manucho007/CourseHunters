@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 
 import { PeopleModule } from './people/people.module';
 import { PersonModule } from './person/person.module';
-import { PersonComponent } from './person/person.component';
 import { ContactsModule } from './contacts/contacts.module';
+// import {EmployeesModule} from './employees/employees.module';
 
+import { PersonComponent } from './person/person.component';
 import { ChildComponent } from './child.component';
 import { WomanComponent } from './woman.component';
 import { BoyComponent } from './boy.component';
-
+import { HomeComponent } from './home.component';
 import { LoggerService, loggerFactory } from './services/logger.service';
 import { NewLoggerService } from './services/new-logger.service';
 import { ConsoleWriterService } from './services/console-writer.service';
@@ -33,14 +34,16 @@ const newLoggerFactory = (writer: ConsoleWriterService) => {
     AppComponent,
     ChildComponent,
     WomanComponent,
-    BoyComponent
+    BoyComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PeopleModule,
+    PeopleModule.forRoot(),
     ContactsModule,
     PersonModule,
+    // EmployeesModule
   ],
   providers: [
     ConsoleWriterService,
