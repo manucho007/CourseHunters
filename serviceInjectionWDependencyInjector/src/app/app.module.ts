@@ -10,10 +10,14 @@ import { PersonComponent } from './person/person.component';
 import { ContactsModule } from './contacts/contacts.module';
 
 import { ChildComponent } from './child.component';
+import { WomanComponent } from './woman.component';
+import { BoyComponent } from './boy.component';
 
 import { LoggerService } from './services/logger.service';
 import { NewLoggerService } from './services/new-logger.service';
 import { ConsoleWriterService } from './services/console-writer.service';
+import { WomanService } from './services/woman.service';
+
 // instead of creating a service we can do the same creating an object
 const simpleLogger = {
   log(msg: string) {
@@ -27,7 +31,9 @@ const newLoggerFactory = (writer: ConsoleWriterService) => {
 @NgModule({
   declarations: [
     AppComponent,
-    ChildComponent
+    ChildComponent,
+    WomanComponent,
+    BoyComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,7 @@ const newLoggerFactory = (writer: ConsoleWriterService) => {
   providers: [
     ConsoleWriterService,
     // Regular logger service
-    // LoggerService,
+    LoggerService,
     //We use a factory to pass a value and have more control over the service
     {
       provide: NewLoggerService,
@@ -47,9 +53,10 @@ const newLoggerFactory = (writer: ConsoleWriterService) => {
       deps: [ConsoleWriterService]
     },
     // Use of Alias so we call from app old service and use New Service instead
-    { provide: LoggerService, useExisting: NewLoggerService },
+      // { provide: LoggerService, useExisting: NewLoggerService },
     // We'll use the Object instead of the services
     // {provide:LoggerService, useValue:simpleLogger}
+    WomanService
   ],
   bootstrap: [AppComponent]
 })

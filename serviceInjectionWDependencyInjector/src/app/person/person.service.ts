@@ -5,7 +5,7 @@ export class PersonService {
   constructor() {  }
   name='Juri';
 
-  getPerson(){
+  getPerson():any{
     return{
       name:this.name,
       age:31

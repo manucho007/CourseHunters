@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from '../services/logger.service';
+import { NewLoggerService } from '../services/new-logger.service';
 @Component({
   selector: 'app-person',
   template: `
@@ -10,7 +10,7 @@ import { LoggerService } from '../services/logger.service';
   `,
 })
 export class PersonComponent implements OnInit {
-  constructor(private logger:LoggerService) {  }
+  constructor(private logger:NewLoggerService) {  }
 
   ngOnInit() {}
 

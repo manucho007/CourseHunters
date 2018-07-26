@@ -5,6 +5,7 @@
   <li>Scopes in services</li>
   <li>Simplify a service using a Javascript Object as a value provider</li>
   <li>Instantiate a service using an Angular Factory provider</li>
+  <li>Override Service with another service</li>
 </ul>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
