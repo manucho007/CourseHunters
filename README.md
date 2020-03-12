@@ -1,5 +1,6 @@
 # CourseHunters
-Practice Projects/Courses  
-<ul>
-  <li>Angular Service Injection with Dependency Injector</li>
-</ul>
+
+## Practice Projects/Courses
+
+- Angular Service Injection with Dependency Injector
+- Dynamic Reactive forms in Angular
