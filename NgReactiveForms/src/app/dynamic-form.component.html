@@ -1,4 +1,11 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="submittedData = data">
+  <formly-form [model]="data" [fields]="formDataObj"> </formly-form>
+  <button type="submit">Save</button>
+</form>
+<pre>{{ submittedData | json }}</pre>
+
+<!-- Handled manually before Formly -->
+<!-- <form [formGroup]="form">
   <div *ngFor="let prop of personProps">
     <label>{{ prop.label }}:</label>
     <div [ngSwitch]="prop.type">
@@ -43,4 +50,4 @@
     </div>
   </div>
 </form>
-<pre>{{ form.value | json }}</pre>
+<pre>{{ form.value | json }}</pre> -->
