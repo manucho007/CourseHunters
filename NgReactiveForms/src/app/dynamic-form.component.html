@@ -12,11 +12,34 @@
         [type]="prop.type"
         [formControlName]="prop.key"
       />
+      <div *ngSwitchCase="'radio'">
+        <label *ngFor="let option of prop.options">
+          <input
+            [type]="prop.type"
+            [name]="prop.key"
+            [formControlName]="prop.key"
+            [value]="option.value"
+          />
+          {{ option.label }}
+        </label>
+      </div>
+
       <select *ngSwitchCase="'select'" [formControlName]="prop.key">
         <option *ngFor="let option of prop.options" [value]="option.value">{{
           option.label
         }}</option>
       </select>
+    </div>
+    <div
+      class="error"
+      *ngIf="form.get(prop.key).invalid && form.get(prop.key).dirty"
+    >
+      <div *ngIf="form.get(prop.key).errors.required">
+        You have to provide a value
+      </div>
+      <div *ngIf="form.get(prop.key).errors.min">
+        You have to be older than {{ form.get(prop.key).errors.min.min }}
+      </div>
     </div>
   </div>
 </form>

@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
@@ -13,7 +14,10 @@ export class AppComponent {
     firstName: {
       value: 'Manuel',
       label: 'FirstName',
-      type: 'text'
+      type: 'text',
+      validators: {
+        required: true
+      }
     },
     lastName: {
       value: 'Rodriguez',
@@ -23,7 +27,8 @@ export class AppComponent {
     age: {
       value: 27,
       label: 'Age',
-      type: 'number'
+      type: 'number',
+      validators: { min: 18 }
     },
     city: {
       value: 'NY',
@@ -33,6 +38,21 @@ export class AppComponent {
         { label: '(Choose one)', value: '' },
         { label: 'New York', value: 'NY' },
         { label: 'Los Angeles', value: 'LA' }
+      ]
+    },
+    gender: {
+      value: 'M',
+      type: 'radio',
+      label: 'Gender',
+      options: [
+        {
+          label: 'Male',
+          value: 'M'
+        },
+        {
+          label: 'Female',
+          value: 'F'
+        }
       ]
     }
   };
