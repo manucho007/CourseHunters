@@ -16,6 +16,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'home',
@@ -25,17 +26,31 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 export class HomeComponent implements OnInit {
   beginnerCourses$: Observable<Course[]>;
   advancedCourses$: Observable<Course[]>;
-
-  constructor(private coursesService: CoursesService) {}
+  intermediateCourses$: Observable<Course[]>;
+  constructor(
+    private coursesService: CoursesService,
+    private loadingService: LoadingService
+  ) {}
 
   ngOnInit() {
+    this.reloadCourses();
+  }
+
+  reloadCourses() {
     const courses$ = this.coursesService
       .loadAllCourses()
       .pipe(map((courses) => courses.sort(sortCoursesBySeqNo)));
 
-    this.beginnerCourses$ = courses$.pipe(
+    // Call to the loading service to toggle the loading spinner
+    const loadCourses$ = this.loadingService.showLoaderUntilCompleted(courses$);
+    this.beginnerCourses$ = loadCourses$.pipe(
       map((courses) =>
         courses.filter((course) => course.category == 'BEGINNER')
+      )
+    );
+    this.intermediateCourses$ = loadCourses$.pipe(
+      map((courses) =>
+        courses.filter((course) => course.category == 'INTERMEDIATE')
       )
     );
     this.advancedCourses$ = courses$.pipe(

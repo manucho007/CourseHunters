@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { filter, tap } from 'rxjs/operators';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from '../model/course';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
@@ -10,6 +11,8 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 })
 export class CourseCardListComponent implements OnInit {
   @Input() courses: Course[] = [];
+
+  @Output() private coursesChanged = new EventEmitter();
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
@@ -23,5 +26,13 @@ export class CourseCardListComponent implements OnInit {
     dialogConfig.data = course;
 
     const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+    // After we get the value from the component we take the ones saved with changes
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((val) => !!val),
+        tap(() => this.coursesChanged.emit())
+      )
+      .subscribe();
   }
 }

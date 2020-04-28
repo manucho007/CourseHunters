@@ -18,4 +18,10 @@ export class CoursesService {
       shareReplay()
     ); // shareReplay limits the amount of callbacks when subscribing to the observables
   }
+
+  saveCourses(courseId: string, changes: Partial<Course>): Observable<any> {
+    return this.httpd
+      .put(`/api/courses/${courseId}`, changes)
+      .pipe(shareReplay());
+  }
 }
