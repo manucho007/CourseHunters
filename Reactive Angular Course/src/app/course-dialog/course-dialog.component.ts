@@ -33,8 +33,7 @@ export class CourseDialogComponent implements AfterViewInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) course: Course,
-    private coursesStore: CoursesStore,
-    private messagesService: MessagesService
+    private coursesStore: CoursesStore
   ) {
     this.course = course;
 

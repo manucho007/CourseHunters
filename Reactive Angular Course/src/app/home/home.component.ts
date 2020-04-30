@@ -21,6 +21,7 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 import { LoadingService } from '../loading/loading.service';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -29,30 +30,13 @@ export class HomeComponent implements OnInit {
   beginnerCourses$: Observable<Course[]>;
   advancedCourses$: Observable<Course[]>;
   intermediateCourses$: Observable<Course[]>;
-  constructor(
-    private coursesService: CoursesService,
-    private coursesStore: CoursesStore
-  ) {}
+  constructor(private coursesStore: CoursesStore) {}
 
   ngOnInit() {
     this.reloadCourses();
   }
 
   reloadCourses() {
-    // const courses$ = this.coursesService.loadAllCourses().pipe(
-    //   map((courses) => courses.sort(sortCoursesBySeqNo)),
-    //   // Will provide a new observable that will replace the failed observable
-    //   catchError((err) => {
-    //     const message = 'Could not load courses';
-    //     this.messagesService.showErrors(message);
-    //     console.log(message, err);
-    //     // Creates new observable that immediatly emits the error and ends lifecycle
-    //     return throwError(err);
-    //   })
-    // );
-
-    // Call to the loading service to toggle the loading spinner
-    // const loadCourses$ = this.loadingService.showLoaderUntilCompleted(courses$);
     this.beginnerCourses$ = this.coursesStore.filterByCategory('BEGINNER');
     this.intermediateCourses$ = this.coursesStore.filterByCategory(
       'INTERMEDIATE'
