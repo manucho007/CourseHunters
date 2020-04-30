@@ -1,3 +1,5 @@
+import { MessagesService } from './messages/messages.service';
+import { LoadingService } from './loading/loading.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -74,7 +76,7 @@ import { CourseCardListComponent } from './course-card-list/course-card-list.com
     MatMomentDateModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [LoadingService, MessagesService],
   bootstrap: [AppComponent],
   entryComponents: [CourseDialogComponent],
 })

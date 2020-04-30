@@ -1,3 +1,4 @@
+import { CoursesStore } from './../services/courses.store';
 import { MessagesService } from './../messages/messages.service';
 import { CoursesService } from './../services/courses.service';
 import { Component, OnInit } from '@angular/core';
@@ -30,8 +31,7 @@ export class HomeComponent implements OnInit {
   intermediateCourses$: Observable<Course[]>;
   constructor(
     private coursesService: CoursesService,
-    private loadingService: LoadingService,
-    private messagesService: MessagesService
+    private coursesStore: CoursesStore
   ) {}
 
   ngOnInit() {
@@ -39,34 +39,24 @@ export class HomeComponent implements OnInit {
   }
 
   reloadCourses() {
-    const courses$ = this.coursesService.loadAllCourses().pipe(
-      map((courses) => courses.sort(sortCoursesBySeqNo)),
-      // Will provide a new observable that will replace the failed observable
-      catchError((err) => {
-        const message = 'Could not load courses';
-        this.messagesService.showErrors(message);
-        console.log(message, err);
-        // Creates new observable that immediatly emits the error and ends lifecycle
-        return throwError(err);
-      })
-    );
+    // const courses$ = this.coursesService.loadAllCourses().pipe(
+    //   map((courses) => courses.sort(sortCoursesBySeqNo)),
+    //   // Will provide a new observable that will replace the failed observable
+    //   catchError((err) => {
+    //     const message = 'Could not load courses';
+    //     this.messagesService.showErrors(message);
+    //     console.log(message, err);
+    //     // Creates new observable that immediatly emits the error and ends lifecycle
+    //     return throwError(err);
+    //   })
+    // );
 
     // Call to the loading service to toggle the loading spinner
-    const loadCourses$ = this.loadingService.showLoaderUntilCompleted(courses$);
-    this.beginnerCourses$ = loadCourses$.pipe(
-      map((courses) =>
-        courses.filter((course) => course.category == 'BEGINNER')
-      )
+    // const loadCourses$ = this.loadingService.showLoaderUntilCompleted(courses$);
+    this.beginnerCourses$ = this.coursesStore.filterByCategory('BEGINNER');
+    this.intermediateCourses$ = this.coursesStore.filterByCategory(
+      'INTERMEDIATE'
     );
-    this.intermediateCourses$ = loadCourses$.pipe(
-      map((courses) =>
-        courses.filter((course) => course.category == 'INTERMEDIATE')
-      )
-    );
-    this.advancedCourses$ = courses$.pipe(
-      map((courses) =>
-        courses.filter((course) => course.category == 'ADVANCED')
-      )
-    );
+    this.advancedCourses$ = this.coursesStore.filterByCategory('ADVANCED');
   }
 }
