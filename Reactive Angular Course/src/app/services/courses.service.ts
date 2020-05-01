@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Course } from '../model/course';
+import { Lesson } from '../model/lesson';
 
 @Injectable({
   providedIn: 'root',
@@ -10,18 +11,32 @@ import { Course } from '../model/course';
 // Service layer will only return observables
 // Doesn't return mutable data or promises
 export class CoursesService {
-  constructor(private httpd: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   loadAllCourses(): Observable<Course[]> {
-    return this.httpd.get<Course[]>('api/courses').pipe(
+    return this.http.get<Course[]>('api/courses').pipe(
       map((res) => res['payload']),
       shareReplay()
     ); // shareReplay limits the amount of callbacks when subscribing to the observables
   }
 
   saveCourses(courseId: string, changes: Partial<Course>): Observable<any> {
-    return this.httpd
+    return this.http
       .put(`/api/courses/${courseId}`, changes)
       .pipe(shareReplay());
+  }
+
+  searchLessons(search: string): Observable<Lesson[]> {
+    return this.http
+      .get<Lesson>('/api/lessons', {
+        params: {
+          filter: search,
+          pafeSize: '100',
+        },
+      })
+      .pipe(
+        map((res) => res['payload']),
+        shareReplay()
+      );
   }
 }
