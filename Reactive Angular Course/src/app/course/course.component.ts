@@ -5,6 +5,7 @@ import {
   ElementRef,
   OnInit,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../model/course';
@@ -39,6 +40,7 @@ interface CourseData {
   selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseComponent implements OnInit {
   // Not optimal in some cases to have multiple ngcontainer with multiple observables

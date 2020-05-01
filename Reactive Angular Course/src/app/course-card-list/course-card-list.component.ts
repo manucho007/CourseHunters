@@ -1,5 +1,12 @@
 import { filter, tap } from 'rxjs/operators';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Course } from '../model/course';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
@@ -8,6 +15,7 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
   selector: 'course-card-list',
   templateUrl: './course-card-list.component.html',
   styleUrls: ['./course-card-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseCardListComponent implements OnInit {
   @Input() courses: Course[] = [];
