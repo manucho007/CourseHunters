@@ -1,0 +1,19 @@
+{
+  "name": "testing_guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "add.js",
+  "scripts": {
+    "test": "nyc mocha "
+  },
+  "keywords": [
+    "test",
+    "js"
+  ],
+  "author": "Manuel Rodriguez",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^7.1.2",
+    "nyc": "^15.0.1"
+  }
+}
