@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "interface-state-management"
+    }
+  },
+  "defaultProject": "interface-state-management",
+  "cli": {
+    "analytics": "981a1ef8-8b9b-4a41-bc28-47b7c0dd4029"
+  }
 }
