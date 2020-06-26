@@ -6,8 +6,9 @@
 - Dynamic Reactive forms in Angular
 - Reactive Angular Course
 - The complete guide to testing javascript & node applications
-- Interface state management with Angular Router
+- Manage UI State with the Angular Router
+
 
 ### Current
 
-
+- Interface state management with Angular Router
