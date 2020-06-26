@@ -8,7 +8,6 @@
 - The complete guide to testing javascript & node applications
 - Manage UI State with the Angular Router
 
-
 ### Current
 
-- Interface state management with Angular Router
+- Getting Started with Angular Elements
