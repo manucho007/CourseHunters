@@ -1,7 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contacts',
-  template: ` <h1>This is a contacts component</h1>`,
+  template: `
+    <div *ngFor="let contact of contacts$ | async; index as i">
+      <a [routerLink]="i + 1">{{ contact.name }}</a>
+    </div>
+  `,
 })
-export class ContactsComponent {}
+export class ContactsComponent {
+  contacts$;
+  constructor(private http: HttpClient) {
+    this.contacts$ = http
+      .get('https://swapi.dev/api/people/')
+      .pipe(map((res) => res['results']));
+  }
+}

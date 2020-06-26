@@ -5,12 +5,12 @@ import { Component } from '@angular/core';
   template: `
     <nav>
       <a
-        routerLink=""
+        *ngFor="let nav of navs"
+        [routerLink]="nav.url"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        >Home
+        >{{ nav.content }}
       </a>
-      <a routerLink="contacts" routerLinkActive="active">Contacts</a>
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -26,5 +26,9 @@ import { Component } from '@angular/core';
   ],
 })
 export class AppComponent {
-  title = 'interface-state-management';
+  navs = [
+    { url: '', content: 'Home' },
+    { url: 'contacts', content: 'Contacts' },
+    { url: 'contacts/1', content: 'One' },
+  ];
 }
