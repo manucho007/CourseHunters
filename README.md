@@ -7,7 +7,8 @@
 - Reactive Angular Course
 - The complete guide to testing javascript & node applications
 - Manage UI State with the Angular Router
+- 
 
 ### Current
 
-- Getting Started with Angular Elements
+- Angular Testing MasterClass
