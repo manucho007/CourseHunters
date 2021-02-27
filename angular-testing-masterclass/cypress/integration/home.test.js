@@ -1,3 +1,4 @@
+/// <reference types="cypress"/>
 describe('Home Page', () => {
   beforeEach(() => {
     cy.fixture('courses.json').as('coursesJSON');
@@ -7,6 +8,11 @@ describe('Home Page', () => {
     cy.route('/api/courses', '@coursesJSON').as('courses');
 
     cy.visit('/');
+  });
+
+  it('Has a header with an About and Courses Links', () => {
+    cy.contains('ABOUT');
+    cy.contains('COURSES');
   });
 
   it('should display a list of courses', () => {
